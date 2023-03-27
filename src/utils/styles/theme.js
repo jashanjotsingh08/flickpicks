@@ -7,24 +7,6 @@ const theme = {
         primary: '#1B9CFC', // primary color
         accent: '#55E6C1', // accent color
     },
-    fonts: {
-        regular: {
-            fontFamily: 'Roboto-Regular', //  regular font family
-            fontWeight: 'normal',
-        },
-        medium: {
-            fontFamily: 'Roboto-Medium', // medium font family
-            fontWeight: 'normal',
-        },
-        light: {
-            fontFamily: 'Roboto-Light', // light font family
-            fontWeight: 'normal',
-        },
-        thin: {
-            fontFamily: 'Roboto-Thin', // thin font family
-            fontWeight: 'normal',
-        },
-    },
     roundness: 4, // global border radius
     components: {
         Button: {
