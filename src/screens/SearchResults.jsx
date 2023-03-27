@@ -1,29 +1,33 @@
-import { View, Text } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { searchMovies } from '../utils/api/movieService';
 import { List } from 'react-native-paper';
 
-const SearchResults = ({ query }) => {
-  let [results, setResults] = useState([]);
-  if (query) {
-    handleSearch(query);
-  }
+const SearchResults = ({ searchQuery }) => {
+  const [results, setResults] = useState([]);
 
-  const handleSearch = (key) => {
+  const handleSearch = async (key) => {
     try {
-      const response = searchMovies(key);
-      if (response) {
-        console.log(response);
-        setResults([response.results]);
+      const response = await searchMovies(key);
+      if (response && response.results) {
+        setResults([...response.results]);
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  useEffect(() => {
+    if (searchQuery && searchQuery.length > 0) {
+      const getData = setTimeout(() => {
+        handleSearch(searchQuery);
+      }, 1000);
+      return () => clearTimeout(getData);
+    }
+  }, [searchQuery]);
+
   return (
     <List.Section>
-      {results.length > 0 &&
-        results.map((item) => {
-          <List.Item title={item.title}></List.Item>;
-        })}
+      {results && results.length > 0 && results.map((item) => <List.Item title={item.title} key={item.id}></List.Item>)}
     </List.Section>
   );
 };
