@@ -1,17 +1,21 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { Card, Title } from 'react-native-paper';
 import { IMAGE_URL } from '../../utils/api/movieService';
+import { useTheme } from 'react-native-paper';
 
 const Tile = ({ posterUrl, title }) => {
+  const { glassmorphism } = useTheme();
   return (
     <View style={styles.container}>
-      <Card style={styles.card} contentStyle={styles.cardInner} mode='elevated' elevation={1}>
-        <Card.Cover style={styles.image} source={{ uri: `${IMAGE_URL}/original/${posterUrl}` }} />
-        <View style={styles.overlay} />
-        <View style={styles.textContainer}>
+      <Card style={{ ...glassmorphism, ...styles.card }} contentStyle={styles.cardInner} mode='elevated' elevation={1}>
+        <TouchableOpacity>
+          <Image style={styles.image} source={{ uri: `${IMAGE_URL}/w185/${posterUrl}` }} />
+        </TouchableOpacity>
+        {/* <View style={styles.overlay} /> */}
+        {/* <View style={styles.textContainer}>
           <Title style={styles.title}>{title}</Title>
-        </View>
+        </View> */}
       </Card>
     </View>
   );
@@ -23,16 +27,10 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: '50%',
-    height: '200px',
-    padding: 8,
-    borderRadius: 16,
-    shadow: {
-      color: '#000000',
-      blur: 10,
-      x: -2,
-      y: -2,
-    },
+    width: '48%',
+    height: 260,
+    paddingVertical: 16,
+    marginTop: 16,
   },
   card: {
     width: '100%',
@@ -44,8 +42,8 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   image: {
-    width: '100%',
-    height: '100%',
+    height: 260,
+    borderRadius: 16,
   },
   textContainer: {
     ...StyleSheet.absoluteFillObject,
