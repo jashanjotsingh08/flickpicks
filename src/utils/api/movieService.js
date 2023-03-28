@@ -4,7 +4,7 @@ const API_KEY = 'b738f5cd86406d7fcf5ef487a119149e';
 
 const BASE_URL = 'https://api.themoviedb.org/3';
 
-const IMAGE_URL = 'http://image.tmdb.org/t/p';
+export const IMAGE_URL = 'http://image.tmdb.org/t/p';
 
 const createAxiosInstance = () => {
   return axios.create({
