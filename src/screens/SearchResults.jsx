@@ -37,7 +37,7 @@ const SearchResults = ({ searchQuery }) => {
         )
       ) : (
         <View style={styles.view}>
-          <Title> Please enter a query to search</Title>
+          <Title> Search FlickPicks </Title>
         </View>
       )}
     </ScrollView>
@@ -51,13 +51,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
+    paddingHorizontal: 16,
   },
   view: {
-    display: 'flex',
+    ...StyleSheet.absoluteFillObject,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: '10px',
-    paddingVertical: '10px',
+    padding: 16,
+  },
+  title: {
+    color: 'white',
+    textAlign: 'center',
+    textShadowColor: 'rgba(0, 0, 0, 0.5)',
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 4,
   },
 });
 
