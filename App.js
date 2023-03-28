@@ -9,18 +9,20 @@ import Header from "./src/components/header/Header";
 import SearchResults from "./src/screens/SearchResults";
 
 
+
 export default function App() {
+
   const [searchQuery, setSearchQuery] = useState('');
   const navigationRef = useNavigationContainerRef();
   const Stack = createStackNavigator();
 
   return (
-    <PaperThemeProvider>
+    <PaperThemeProvider themeType={'light'}>
       <NavigationContainer ref={navigationRef} onReady={() => console.log('Navigation container is ready')}>
         <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} navigationRef={navigationRef} />
         <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="SearchResults" options={{headerShown: false}} >
+          <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}} />
+          <Stack.Screen name="SearchResults">
             {() => <SearchResults searchQuery={searchQuery} />}
           </Stack.Screen>
         </Stack.Navigator>
