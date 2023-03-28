@@ -14,18 +14,13 @@ export default function App() {
   const navigationRef = useNavigationContainerRef();
   const Stack = createStackNavigator();
 
-  const handleSearch = async (query) => {
-    setSearchQuery(query);
-
-  };
-
   return (
     <PaperThemeProvider>
       <NavigationContainer ref={navigationRef} onReady={() => console.log('Navigation container is ready')}>
-        <Header searchQuery={searchQuery} handleSearch={handleSearch} navigationRef={navigationRef} />
+        <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} navigationRef={navigationRef} />
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="SearchResults">
+          <Stack.Screen name="SearchResults" options={{headerShown: false}} >
             {() => <SearchResults searchQuery={searchQuery} />}
           </Stack.Screen>
         </Stack.Navigator>

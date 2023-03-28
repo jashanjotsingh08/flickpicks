@@ -2,20 +2,20 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 
-const SearchBar = ({ value, onChangeText }) => {
+const SearchBar = ({ value, setSearchQuery }) => {
   return (
     <Searchbar
-      placeholder="Search"
+      placeholder='Search'
       value={value}
-      onChangeText={onChangeText}
+      onChangeText={text => setSearchQuery(text)}
       style={styles.searchBar}
+      onClearIconPress={() => setSearchQuery('')}
     />
   );
 };
 
 const styles = StyleSheet.create({
-  searchBar: {
-  }
+  searchBar: {},
 });
 
 export default SearchBar;

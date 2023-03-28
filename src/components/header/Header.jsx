@@ -1,21 +1,31 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import { TouchableOpacity } from 'react-native';
 import SearchBar from '../searchBar/SearchBar';
 
-const Header = ({ searchQuery, handleSearch, navigationRef }) => {
+const Header = ({ searchQuery, setSearchQuery, navigationRef }) => {
   const handleSearchBarPress = () => {
-    console.log('pressed');
-    navigationRef.navigate('SearchResults', searchQuery);
+    navigationRef.navigate('SearchResults');
   };
   return (
-    <Appbar.Header>
-      <Appbar.BackAction onPress={() => console.log('back')} />
-      <TouchableOpacity onPress={handleSearchBarPress}>
-        <SearchBar value={searchQuery} onChangeText={handleSearch} />
+    <Appbar.Header style={styles.header}>
+      <Appbar.BackAction onPress={() => navigationRef.goBack()} />
+      <TouchableOpacity onPress={handleSearchBarPress} style={styles.searchBar}>
+        <SearchBar value={searchQuery} setSearchQuery={setSearchQuery} />
       </TouchableOpacity>
     </Appbar.Header>
   );
 };
+
+const styles = StyleSheet.create({
+  header: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  searchBar: {
+    flex: [1, 1, '100%'],
+  },
+});
 
 export default Header;
