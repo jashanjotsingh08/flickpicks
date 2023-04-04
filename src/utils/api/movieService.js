@@ -52,7 +52,11 @@ export const getUpcomingMovies = async () => {
   return response.data;
 };
 
-export const getMoviePoster = async (posterPath) => {
-  const response = axios.get(`${IMAGE_URL}/original/${posterPath}`);
+export const getMoviePosterUrl = async (posterPath, size = 'original') => {
+  return `${IMAGE_URL}/${size}/${posterPath}`;
+};
+
+export const getMovieDetails = async (movieId) => {
+  const response = await axiosInstance.get(`/movie/${movieId}`);
   return response.data;
 };

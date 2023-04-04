@@ -13,9 +13,8 @@ const Header = ({ searchQuery, setSearchQuery, navigationRef }) => {
   };
   return (
     <Appbar.Header style={{ ...glassmorphism, ...styles.header}}>
-      {/* <Appbar.BackAction onPress={() => navigationRef.goBack()} /> */}
-      <TouchableOpacity onPress={handleSearchBarPress} style={styles.searchBar}>
-        <SearchBar value={searchQuery} setSearchQuery={setSearchQuery} />
+      <TouchableOpacity onPress={handleSearchBarPress} style={styles.searchBar} activeOpacity={1}>
+        <SearchBar value={searchQuery} setSearchQuery={setSearchQuery} handleSearchBarPress={handleSearchBarPress}/>
       </TouchableOpacity>
     </Appbar.Header>
   );

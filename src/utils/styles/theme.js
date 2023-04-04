@@ -45,7 +45,7 @@ const darkTheme = {
     roundness: 10,
     colors: {
         ...MD3DarkTheme.colors,
-        primary: '#1B9CFC', // primary color
+        primary: '#1B9CFC',
         accent: '#ffffff',
         background: '#121212',
         surface: '#333333',

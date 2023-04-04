@@ -4,18 +4,14 @@ import { Card, Title } from 'react-native-paper';
 import { IMAGE_URL } from '../../utils/api/movieService';
 import { useTheme } from 'react-native-paper';
 
-const Tile = ({ posterUrl, title }) => {
+const Tile = ({ posterUrl, title, movieId, navigationRef }) => {
   const { glassmorphism } = useTheme();
   return (
     <View style={styles.container}>
       <Card style={{ ...glassmorphism, ...styles.card }} contentStyle={styles.cardInner} mode='elevated' elevation={1}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigationRef.navigate('MovieDetails', { movieId: movieId })}>
           <Image style={styles.image} source={{ uri: `${IMAGE_URL}/w185/${posterUrl}` }} />
         </TouchableOpacity>
-        {/* <View style={styles.overlay} /> */}
-        {/* <View style={styles.textContainer}>
-          <Title style={styles.title}>{title}</Title>
-        </View> */}
       </Card>
     </View>
   );
@@ -44,23 +40,5 @@ const styles = StyleSheet.create({
   image: {
     height: 260,
     borderRadius: 16,
-  },
-  textContainer: {
-    ...StyleSheet.absoluteFillObject,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 16,
-  },
-  title: {
-    color: 'white',
-    textAlign: 'center',
-    textShadowColor: 'rgba(0, 0, 0, 0.5)',
-    textShadowOffset: { width: 0, height: 2 },
-    textShadowRadius: 4,
-  },
-  overlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-    borderRadius: 16,
-  },
+  }
 });

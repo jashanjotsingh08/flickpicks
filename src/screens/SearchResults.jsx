@@ -4,7 +4,7 @@ import { View, ScrollView, StyleSheet } from 'react-native';
 import Tile from '../components/tile/Tile';
 import { Title } from 'react-native-paper';
 
-const SearchResults = ({ searchQuery }) => {
+const SearchResults = ({ searchQuery, navigationRef }) => {
   const [results, setResults] = useState([]);
 
   const handleSearch = async (key) => {
@@ -33,7 +33,7 @@ const SearchResults = ({ searchQuery }) => {
     <ScrollView contentContainerStyle={styles.container}>
       {results && results.length > 0 ? (
         results.map(
-          ({ poster_path, title, id }) => poster_path && <Tile key={id} posterUrl={poster_path} title={title} />
+          (movie) => movie.poster_path && <Tile key={movie.id} posterUrl={movie.poster_path} movieId={movie.id} navigationRef={navigationRef}/>
         )
       ) : (
         <View style={styles.view}>
